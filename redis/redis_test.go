@@ -4,9 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"gopkg.in/redis.v3"
-
 	"github.com/conku/cache"
+	"github.com/go-redis/redis"
 )
 
 var client cache.CacheStoreInterface
