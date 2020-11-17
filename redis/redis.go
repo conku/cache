@@ -148,3 +148,33 @@ func (r *Redis) SAdd(key string, field string) error {
 func (r *Redis) SRandMember(key string) (string, error) {
 	return r.Client.SRandMember(key).Result()
 }
+
+//Do 设置过期时间 EXPIRE/PEXPIREAT
+/*
+EXPIRE aa 60 接口定义：EXPIRE key "seconds"
+接口描述：设置一个key在当前时间"seconds"(秒)之后过期。返回1代表设置成功，返回0代表key不存在或者无法设置过期时间。
+
+PEXPIRE 接口定义：PEXPIRE key "milliseconds"
+接口描述：设置一个key在当前时间"milliseconds"(毫秒)之后过期。返回1代表设置成功，返回0代表key不存在或者无法设置过期时间。
+
+EXPIREAT aa 1586941008 接口定义：EXPIREAT key "timestamp"
+接口描述：设置一个key在"timestamp"(时间戳(秒))之后过期。返回1代表设置成功，返回0代表key不存在或者无法设置过期时间。
+
+PEXPIREAT aa 1586941008000 接口定义：PEXPIREAT key "milliseconds-timestamp"
+接口描述：设置一个key在"milliseconds-timestamp"(时间戳(毫秒))之后过期。返回1代表设置成功，返回0代表key不存在或者无法设置过期时间
+
+TTL 接口定义：TTL key
+　　　　接口描述：获取key的过期时间。如果key存在过期时间，返回剩余生存时间(秒)；如果key是永久的，返回-1；如果key不存在或者已过期，返回-2。
+
+PTTL 接口定义：PTTL key
+　　　　接口描述：获取key的过期时间。如果key存在过期时间，返回剩余生存时间(毫秒)；如果key是永久的，返回-1；如果key不存在或者已过期，返回-2。
+
+PERSIST 接口定义：PERSIST key
+　　　　接口描述：移除key的过期时间，将其转换为永久状态。如果返回1，代表转换成功。如果返回0，代表key不存在或者之前就已经是永久状态。
+
+SETEX 接口定义：SETEX key "seconds" "value"
+　　接口描述：SETEX在逻辑上等价于SET和EXPIRE合并的操作，区别之处在于SETEX是一条命令，而命令的执行是原子性的，所以不会出现并发问题。
+*/
+func (r *Redis) Do(cmd, key, seconds string) error {
+	return r.Client.Do(cmd, key, seconds).Err()
+}

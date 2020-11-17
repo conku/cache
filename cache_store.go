@@ -29,5 +29,6 @@ type RedisStoreInterface interface {
 	HExists(key string, field string) error
 	HGetall(key string) (map[string]string, error)
 	SAdd(key string, value string) error
+	Do(key string, value string) error
 	SRandMember(key string) (string, error)
 }
