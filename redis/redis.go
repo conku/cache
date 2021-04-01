@@ -155,8 +155,9 @@ func (r *Redis) SRandMember(key string) (string, error) {
 }
 
 // Expire 设置过期时间
-func (r *Redis) Expire(key string, expiration time.Duration) (bool, error) {
-	return r.Client.Expire(key, expiration).Result()
+func (r *Redis) Expire(key string, seconds time.Duration) (bool, error) {
+
+	return r.Client.Expire(key, seconds).Result()
 }
 
 //Do 设置过期时间 EXPIRE/PEXPIREAT
