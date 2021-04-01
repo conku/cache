@@ -2,6 +2,7 @@ package redis
 
 import (
 	"encoding/json"
+	"time"
 
 	"github.com/go-redis/redis"
 )
@@ -151,6 +152,11 @@ func (r *Redis) SAdd(key string, field string) error {
 
 func (r *Redis) SRandMember(key string) (string, error) {
 	return r.Client.SRandMember(key).Result()
+}
+
+// Expire 设置过期时间
+func (r *Redis) Expire(key string, expiration time.Duration) (bool, error) {
+	return r.Client.Expire(key, expiration).Result()
 }
 
 //Do 设置过期时间 EXPIRE/PEXPIREAT

@@ -31,4 +31,5 @@ type RedisStoreInterface interface {
 	SAdd(key string, value string) error
 	Do(cmd string, key string, seconds string) error
 	SRandMember(key string) (string, error)
+	Expire(key string) (bool, error)
 }
