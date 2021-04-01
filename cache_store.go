@@ -1,5 +1,7 @@
 package cache
 
+import "time"
+
 type CacheStoreInterface interface {
 	Get(key string) (string, error)
 	Unmarshal(key string, object interface{}) error
@@ -31,5 +33,5 @@ type RedisStoreInterface interface {
 	SAdd(key string, value string) error
 	Do(cmd string, key string, seconds string) error
 	SRandMember(key string) (string, error)
-	Expire(key string) (bool, error)
+	Expire(key string, seconds time.Duration) (bool, error)
 }
