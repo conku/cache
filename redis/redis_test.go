@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/conku/cache"
-	"github.com/go-redis/redis"
+	"github.com/redis/go-redis/v9"
 )
 
 var client cache.CacheStoreInterface

@@ -3,7 +3,7 @@ package cache
 import (
 	"time"
 
-	"github.com/go-redis/redis"
+	"github.com/redis/go-redis/v9"
 )
 
 type CacheStoreInterface interface {
@@ -50,5 +50,6 @@ type RedisStoreInterface interface {
 	ZRangeWithScores(key string, start, stop int64) ([]redis.Z, error)
 	ZAdd(key string, members ...redis.Z) error
 	Expire(key string, seconds time.Duration) (bool, error)
+	SetNX(key string, value interface{}, lockDuration time.Duration) (bool, error)
 	Do(cmd string, key string, seconds string) error
 }
