@@ -1,4 +1,4 @@
-module github.com/conku/cache
+module github.com/conku/cache/v2
 
 go 1.21.3
 

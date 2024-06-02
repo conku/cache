@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/conku/cache"
+	"github.com/conku/cache/v2"
 )
 
 var client cache.CacheStoreInterface

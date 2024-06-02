@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/conku/cache"
+	"github.com/conku/cache/v2"
 	"github.com/redis/go-redis/v9"
 )
 
