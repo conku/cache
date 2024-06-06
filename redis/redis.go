@@ -233,6 +233,11 @@ func (r *Redis) SetNX(key string, value interface{}, lockDuration time.Duration)
 	return r.Client.SetNX(ctx, key, value, lockDuration).Result()
 }
 
+// Expire 设置过期时间
+func (r *Redis) Exists(key string) (int64, error) {
+	return r.Client.Exists(ctx, key).Result()
+}
+
 // ctx, lockKey, lockValue, lockDuration
 //Do 设置过期时间 EXPIRE/PEXPIREAT
 /*

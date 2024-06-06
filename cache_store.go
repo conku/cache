@@ -50,6 +50,7 @@ type RedisStoreInterface interface {
 	ZRangeWithScores(key string, start, stop int64) ([]redis.Z, error)
 	ZAdd(key string, members ...redis.Z) error
 	Expire(key string, seconds time.Duration) (bool, error)
+	Exists(key string) (int64, error)
 	SetNX(key string, value interface{}, lockDuration time.Duration) (bool, error)
 	Do(cmd string, key string, seconds string) error
 }
