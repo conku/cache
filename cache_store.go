@@ -18,6 +18,7 @@ type RedisStoreInterface interface {
 	Keys(pattern string) ([]string, error)
 	GetByte(key string) ([]byte, error)
 	Get(key string) (string, error)
+	GetInt(key string) (int, error)
 	IncrBy(key string, value int64) (int64, error)
 	DecrBy(key string, value int64) (int64, error)
 	Unmarshal(key string, object interface{}) error
@@ -52,5 +53,7 @@ type RedisStoreInterface interface {
 	Expire(key string, seconds time.Duration) (bool, error)
 	Exists(key string) (int64, error)
 	SetNX(key string, value interface{}, lockDuration time.Duration) (bool, error)
+	PSubscribe(channels ...string) *redis.PubSub
+	Eval(script string, keys []string, args ...interface{}) (int, error)
 	Do(cmd string, key string, seconds string) error
 }

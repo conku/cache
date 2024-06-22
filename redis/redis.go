@@ -34,6 +34,11 @@ func (r *Redis) Get(key string) (string, error) {
 	return r.Client.Get(ctx, key).Result()
 }
 
+// Get returns the value saved under a given key.
+func (r *Redis) GetInt(key string) (int, error) {
+	return r.Client.Get(ctx, key).Int()
+}
+
 // GetByte returns the value saved under a given key.
 func (r *Redis) GetByte(key string) ([]byte, error) {
 	return r.Client.Get(ctx, key).Bytes()
@@ -236,6 +241,16 @@ func (r *Redis) SetNX(key string, value interface{}, lockDuration time.Duration)
 // Expire 设置过期时间
 func (r *Redis) Exists(key string) (int64, error) {
 	return r.Client.Exists(ctx, key).Result()
+}
+
+// 订阅事件
+func (r *Redis) PSubscribe(channels ...string) *redis.PubSub {
+	return r.Client.PSubscribe(ctx, channels...)
+}
+
+// Redis脚本 luaScript
+func (r *Redis) Eval(script string, keys []string, args ...interface{}) (int, error) {
+	return r.Client.Eval(ctx, script, keys, args...).Int()
 }
 
 // ctx, lockKey, lockValue, lockDuration
